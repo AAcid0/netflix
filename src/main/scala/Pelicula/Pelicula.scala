@@ -7,7 +7,7 @@ abstract class Pelicula
     var _nombre : String = _
     var _nombreCreador : String = _
     var _numVistas : Int = 0
-    var listaPeliculas : Vector[Pelicula] 
+    var listaPeliculas : List[Pelicula] 
     //Constructor Auxiliar
 
     def this(n : String, d:String)
