@@ -1,5 +1,4 @@
 // Modelar un sistema similar a Netflix
-
 // Registrarse como usuario
 // Logearse como usuario
 // Editar la información del usuario

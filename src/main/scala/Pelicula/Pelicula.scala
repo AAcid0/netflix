@@ -1,6 +1,6 @@
 package Pelicula
 
-class Pelicula
+abstract class Pelicula
 {
     //Atributos
 
