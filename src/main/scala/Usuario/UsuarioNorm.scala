@@ -1,6 +1,6 @@
 package Usuario
 
-abstract class UsuarioNorm extends Usuario
+class UsuarioNorm extends Usuario
 {
     //Atributos
 
