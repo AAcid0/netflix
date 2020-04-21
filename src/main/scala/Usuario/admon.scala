@@ -7,8 +7,8 @@ class UsuarioAdmin extends Usuario
     override var _username : String = _
     override var _password : String = _
     override var _nivel = 1
-    var listaAuxi : List[Usuario]
-    var listaAuxi1 : List[Pelicula]
+    var listaAuxi : List[Usuario] = _
+    var listaAuxi1 : List[Pelicula] = _
 
 
     //getters
@@ -26,11 +26,10 @@ class UsuarioAdmin extends Usuario
     
 
     /*Crea una nueva pelicula y la agrega a listaPelicula*/
-    def crearPelícula(newNombre : String, newCreador : String, duracion : Int ) : List[Pelicula] =
+    def crearPelícula(newNombre : String, newCreador : String, duracion : Int , _listaPeliculas : List[Pelicula]) : List[Pelicula] =
     { 
         var obj = new Pelicula(newNombre,newCreador,duracion)
         var add = obj :: _listaPeliculas
-        _listaPeliculas = add
         return _listaPeliculas
     }
     
@@ -38,7 +37,7 @@ class UsuarioAdmin extends Usuario
     
     /*Recibe 1 nombre valido de una pelicula y un usuario administrador, verifica
     que la pelicula exista y la elimina de listaPeliculas*/
-    def eliminarPelicula(userAdm : Usuario, peliTarget : String) : List[Pelicula] =
+    def eliminarPelicula(userAdm : Usuario, peliTarget : String, _listaPeliculas : List[Pelicula]) : List[Pelicula] =
     {
         if( userAdm._nivel == 1 ){
             for( i <- _listaPeliculas){
@@ -53,7 +52,7 @@ class UsuarioAdmin extends Usuario
     /*INHABILITAR USUARIO: recibe 1 userAdm y userNorm, verifica que userNorm deba 
     2 o 3 meses y de ser así, el estado de userNorm pasa a Inhabilitado*/
 
-    def desactivarUsuario(userAdm : Usuario, userTarget : UsuarioNorm) : List[Usuario] =
+    def desactivarUsuario(userAdm : Usuario, userTarget : UsuarioNorm, _listaUsuarios : List[Usuario]) : List[Usuario] =
     {
         if( userAdm._nivel == 1 ){
             for( i <- _listaUsuarios ){
@@ -67,7 +66,7 @@ class UsuarioAdmin extends Usuario
 
      /*Recibe 1 usuario administrador y 1 usuario normal, verifica que
     el usuario normal debe mas de 4 meses y borra su cuenta de listaUsuarios*/
-    def eliminarCuenta(userAdm : Usuario, userTarget : UsuarioNorm) : List[Usuario] =
+    def eliminarCuenta(userAdm : Usuario, userTarget : UsuarioNorm, _listaUsuarios : List[Usuario]) : List[Usuario] =
     {
         if( userAdm._nivel == 1 && userTarget._mesNoPago >= 4 )
         {

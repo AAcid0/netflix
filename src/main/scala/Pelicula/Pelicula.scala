@@ -9,7 +9,7 @@ class Pelicula
     var _numVistas : Int = 0
     var _duracion : Int = 0 //en minutos
     var _costoDescarga : Double = 0
-    var _listaPeliculas : List[Pelicula] =_
+    
     //Constructor Auxiliar
 
     def this(n : String, d: String, dur : Int)

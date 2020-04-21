@@ -14,7 +14,6 @@ class UsuarioNorm extends Usuario
     var _saldo : Double = 0
     var _tipoPlan : String = "Básico"
     var _peliculasCompradas : List[Pelicula] = _
-    
 
     //Constructor Auxiliar
     def this(e : String, u : String, p : String)
@@ -50,7 +49,7 @@ class UsuarioNorm extends Usuario
         this._saldo = this._saldo + saldoArecargar
     }
 
-    def comprarPelicula( nomPelicula: String ) =
+    def comprarPelicula( nomPelicula: String, _listaPeliculas : List[Pelicula] ) =
     {
         if (this._estadoCuenta == 1)
         {

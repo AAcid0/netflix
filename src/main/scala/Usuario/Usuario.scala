@@ -9,7 +9,6 @@ trait Usuario
     var _username : String
     var _password : String
     var _nivel : Int //0 = usuario, 1 = administrador
-    var _listaUsuarios : List[Usuario]
     //Getters
 
     def email = _email

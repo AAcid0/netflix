@@ -7,6 +7,8 @@ abstract class Sistema extends Pelicula with Usuario
     //Atributos
     var user : UsuarioNorm
     var obj : Pelicula
+    var _listaPeliculas : List[Pelicula]
+    var _listaUsuarios : List[Usuario]
     var listaAuxi : List[Usuario]
     var listaAuxi1 : List[Pelicula]
 
