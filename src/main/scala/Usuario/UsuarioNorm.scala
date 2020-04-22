@@ -12,8 +12,9 @@ class UsuarioNorm extends Usuario
     var _estadoCuenta : Int = 1 //1 = activo , 0 = inactivo
     var _mesNoPago : Int = 0
     var _saldo : Double = 0
-    var _tipoPlan : String = "Básico"
-    var _peliculasCompradas : List[Pelicula] = _
+    var _plan : Int = 1 //Plan basico = 1, plan medio = 2, plan definitivo = 3 
+    var _peliculasCompradas : List[Pelicula] = List()
+
 
     //Constructor Auxiliar
     def this(e : String, u : String, p : String)
@@ -30,18 +31,31 @@ class UsuarioNorm extends Usuario
     override def password = _password
     override def nivel = _nivel
     def mesNoPago = _mesNoPago
-    def tipoPlan = _tipoPlan
+    def plan = _plan
     def estadoCuenta = _estadoCuenta
 
 
     //Setters
-    def tipoPlan_= (nuevoPlan : String) = _tipoPlan = nuevoPlan
+    def plan_= (nuevoPlan : Int) = _plan = nuevoPlan
 
     //Metodos
 
     def pagarMes() =
     {
-        this._saldo = this._saldo - 15000
+        if(this._plan == 1)
+        {
+            this._saldo = this._saldo - 20000
+        }
+        if(this._plan == 2)
+        {
+            this._saldo = this._saldo - 15000
+        }
+        if(this._plan == 3)
+        {
+            this._saldo = this._saldo - 10000
+        }
+            
+ 
     }
 
     def recargarSaldo(saldoArecargar:Double) =
@@ -49,20 +63,34 @@ class UsuarioNorm extends Usuario
         this._saldo = this._saldo + saldoArecargar
     }
 
-    def comprarPelicula( nomPelicula: String, _listaPeliculas : List[Pelicula] ) =
+    def comprarPelicula( nomPelicula: String, listPeliculas : List[Pelicula] ) : Unit =
     {
         if (this._estadoCuenta == 1)
         {
-            for( i <- _listaPeliculas )
+            for( i <- listPeliculas )
             {
                 if( i._nombre == nomPelicula )
                 {
                     if (this._saldo >= i._costoDescarga)
                     {
                         this._saldo = this._saldo - i._costoDescarga
-                        var add = i :: this._peliculasCompradas
-                        this._peliculasCompradas = add  
+                        _peliculasCompradas = i :: _peliculasCompradas
                     }
+                }
+            }
+        }
+    }
+
+    def verPelicula(nombrePel : String, listPeliculas : List[Pelicula]) : Unit = 
+    {
+        if (this._estadoCuenta == 1)
+        {
+            for( i <- listPeliculas )
+            {
+                if( (i._nombre == nombrePel) && ((this._saldo - i._costoDescarga) >= 0) )
+                {
+                    _peliculasCompradas = i :: _peliculasCompradas
+                    this._saldo = this._saldo - i._costoDescarga
                 }
             }
         }
@@ -70,10 +98,9 @@ class UsuarioNorm extends Usuario
 
     /*Al un usuario comprar un plan, se debe modificar en la info del usario
     recibe un objeto tipo usuario y el nuevo plan adquirido*/
-    def comprarPlan(user : UsuarioNorm, newPlan : String) : UsuarioNorm =
+    def comprarPlan(newPlan : Int) : Unit =
     {
-        user._tipoPlan = newPlan
-        return user
+        this._plan = newPlan
     }
 
 }
