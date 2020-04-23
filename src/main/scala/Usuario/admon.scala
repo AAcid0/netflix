@@ -56,7 +56,7 @@ class UsuarioAdmin extends Usuario
     {
         if( userAdm._nivel == 1 ){
             for( i <- _listaUsuarios ){
-                if( i._username == userTarget ){
+                if( i._username == userTarget && userTarget._mesNoPago >= 2){
                     userTarget._estadoCuenta = 0
                 }
             }

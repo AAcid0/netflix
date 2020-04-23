@@ -25,8 +25,35 @@ class Sistema
                 return true
             }
         }
-        false
+        return false
     }
+
+    def estaUsuario(user : String) : Boolean =
+    {
+        for( i <- this._listaUsuarios ){
+            if(user == i._username)
+            {
+                return true
+            }
+        }
+
+        return false
+    }
+
+
+    def encontrarUsuario(user : String) : Usuario =
+    {
+        for( p <- this._listaUsuarios )
+        {
+            if(user == p._username)
+            {
+                var us= p.asInstanceOf[Usuario]
+                return us
+            }
+        }
+    }
+
+
     /*Dar derechos de administrador a un usuario recibido*/
     def darAdmin(user : Usuario) : Unit =
     {
@@ -53,7 +80,20 @@ class Sistema
 
     def pasarMes() : Unit =
     {
-        
+        if(_listaUsuarios.nonEmpty != false)
+        {
+            for( i <- _listaUsuarios ){
+                var usnor = i.asInstanceOf[UsuarioNorm]
+                if(usnor.pagarMes())
+                {
+                    usnor.pagarMes()
+                }
+               else
+               {
+                   usnor._mesNoPago += 1
+               }
+            }
+        }
     }
 
 }

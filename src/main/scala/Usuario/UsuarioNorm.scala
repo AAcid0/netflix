@@ -40,23 +40,40 @@ class UsuarioNorm extends Usuario
 
     //Metodos
 
-    def pagarMes() =
+     def pagarMes() : Boolean =
     {
+        var pago : Boolean = false
+
         if(this._plan == 1)
         {
-            this._saldo = this._saldo - 20000
+            if((this._saldo - 20000) >= 0)
+            {
+                this._saldo = this._saldo - 20000
+                pago = true
+            }   
         }
+
         if(this._plan == 2)
         {
-            this._saldo = this._saldo - 15000
+            if((this._saldo - 15000) >= 0)
+                {
+                    this._saldo = this._saldo - 15000
+                    pago = true
+                }    
         }
+        
         if(this._plan == 3)
         {
-            this._saldo = this._saldo - 10000
+            if((this._saldo - 1000) >= 0)
+            {
+                this._saldo = this._saldo - 10000
+                pago = true 
+            }     
         }
-            
- 
+
+        return pago
     }
+
 
     def recargarSaldo(saldoArecargar:Double) =
     {
@@ -83,14 +100,14 @@ class UsuarioNorm extends Usuario
 
     def verPelicula(nombrePel : String, listPeliculas : List[Pelicula]) : Unit = 
     {
-        if (this._estadoCuenta == 1)
+        if (this._estadoCuenta == 1) // habilitado
         {
             for( i <- listPeliculas )
             {
-                if( (i._nombre == nombrePel) && ((this._saldo - i._costoDescarga) >= 0) )
+                if(i._nombre == nombrePel)
                 {
                     _peliculasCompradas = i :: _peliculasCompradas
-                    this._saldo = this._saldo - i._costoDescarga
+                    i._numVistas += 1
                 }
             }
         }
