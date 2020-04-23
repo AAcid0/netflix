@@ -31,14 +31,12 @@ class UsuarioAdmin extends Usuario
     //MÉTODOS
 
     /*Crea una nueva pelicula y la agrega a listaPelicula*/
-    def crearPelicula(newNombre : String, newCreador : String, duracion : Int , _listaPeliculas : List[Pelicula]) : List[Pelicula] =
+    def crearPelicula(newNombre : String, newDescrip : String, duracion : Int , _listaPeliculas : List[Pelicula]) : List[Pelicula] =
     { 
-        var obj : Pelicula = new Pelicula(newNombre,newCreador,duracion)
+        var obj : Pelicula = new Pelicula(newNombre,newDescrip,duracion)
         var add = obj :: _listaPeliculas
         return _listaPeliculas
     }
-    
-    
     
     /*Recibe 1 nombre valido de una pelicula y un usuario administrador, verifica
     que la pelicula exista y la elimina de listaPeliculas*/
@@ -61,7 +59,7 @@ class UsuarioAdmin extends Usuario
     {
         if( userAdm._nivel == 1 ){
             for( i <- _listaUsuarios ){
-                if( i._username == userTarget && userTarget._mesNoPago >= 2){
+                if( i._username == userTarget._username && userTarget._mesNoPago >= 2){
                     userTarget._estadoCuenta = 0
                 }
             }

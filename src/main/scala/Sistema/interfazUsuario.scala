@@ -54,7 +54,8 @@ object interfazUsuario extends App
                 }
                 else
                 {
-                    inicioAdmin(user)
+                    var usAd = user.asInstanceOf[UsuarioAdmin]
+                    inicioAdmin(usAd)
                 }
             }
             else
@@ -134,8 +135,64 @@ object interfazUsuario extends App
         }    
     }
 
-    def inicioAdmin(user : Usuario) =
+    def inicioAdmin(user : UsuarioAdmin) =
     {
-        println("enconstruccion")
+        var sesionCerrada : Boolean = false
+        while(!sesionCerrada)
+        {
+            println("Bienvenido usuario administrador")
+            println("Por favor seleccione la opción a realizar")
+            println("1-> Crear pelicula nueva")
+            println("2-> Eliminar una pelicula existente")
+            println("3-> Inhabilitar cuenta de un usuario")
+            println("4-> Eliminar cuenta de un usuario")
+            println("5-> Cerrar sesión")
+
+            var op : Int = StdIn.readInt()
+
+            if(op == 1)
+            {
+                println("Ingrese el nombre de la pelicula: ")
+                var nom : String = StdIn.readLine()
+                println("Ingrese la descripcion de la pelicula: ")
+                var des : String = StdIn.readLine()
+                println("Ingrese la duracion de la pelicula: ")
+                var dur : Int = StdIn.readInt()
+                user.crearPelicula(nom, des, dur, netflix._listaPeliculas)
+                println("Pelicula agregada con éxito.")
+            }
+
+            if(op == 2)
+            {
+                println("Ingrese el nombre de la pelicula a eliminar: ")
+                var nom : String = StdIn.readLine()
+                user.eliminarPelicula(user, nom, netflix._listaPeliculas)
+                println("Pelicula eliminada con éxito.")
+            }
+
+            if(op == 3)
+            {
+                println("Ingrese el usuario al que se inhabilitará: ")
+                var nom : String = StdIn.readLine()
+                var userNue : Usuario = netflix.encontrarUsuario(nom)
+                var userAux = userNue.asInstanceOf[UsuarioNorm]
+                user.desactivarUsuario(user, userAux, netflix._listaUsuarios)
+                println("Usuario inhabilitado.")
+            }
+            if(op == 4)
+            {
+                println("Ingrese el usuario al que se eliminará: ")
+                var nom : String = StdIn.readLine()
+                var userNue : Usuario = netflix.encontrarUsuario(nom)
+                var userAux = userNue.asInstanceOf[UsuarioNorm]
+                user.eliminarCuenta(user, userAux, netflix._listaUsuarios)
+                println("Usuario Eliminado.")
+            }
+            if(op == 5)
+            {
+                println("Sesión cerrada")
+                iniciarSesion()
+            }
+        }
     }
 }
