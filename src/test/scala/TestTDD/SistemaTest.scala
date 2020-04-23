@@ -14,7 +14,6 @@ class SistemaTest extends FunSuite
     test("Al registrar un usuario, será agregado a listaUsuarios")
     {
         newSistem.agregarUsuario(newUser)
-        //var newUser : UsuarioNorm =  new UsuarioNorm("alguien@algo", "pakito", "clave123")
         assert(newSistem._listaUsuarios.nonEmpty != false)
     }
 
