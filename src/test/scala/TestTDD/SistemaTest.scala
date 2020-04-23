@@ -7,7 +7,6 @@ class SistemaTest extends FunSuite
 {
     var newSistem : Sistema = new Sistema
     var newUser : UsuarioNorm = new UsuarioNorm("alguien@algo", "pakito", "clave123")
-    //newSistem.crearUsuario("alguien@algo", "pakito", "clave123")
     var peli : Pelicula = new Pelicula("X-men","Superheroes",120)
     newSistem.agregarPelicula(peli)
 
@@ -34,8 +33,6 @@ class SistemaTest extends FunSuite
         assert(newUser._nivel == 1)
         
     }
-
-
 
     test("Cuando el usuario compra una pelicula, esta se agrega a su lista de peliculas compradas")
     {

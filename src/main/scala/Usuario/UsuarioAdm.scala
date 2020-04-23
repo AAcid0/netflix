@@ -18,17 +18,22 @@ class UsuarioAdmin extends Usuario
     override def nivel = _nivel 
 
     //setters 
-   
+    //Constructor Auxiliar
+    def this(e : String, u : String, p : String)
+    {
+        this()
+        _email = e
+        _username = u
+        _password = p
+    }
    
    
     //MÉTODOS
 
-    
-
     /*Crea una nueva pelicula y la agrega a listaPelicula*/
-    def crearPelícula(newNombre : String, newCreador : String, duracion : Int , _listaPeliculas : List[Pelicula]) : List[Pelicula] =
+    def crearPelicula(newNombre : String, newCreador : String, duracion : Int , _listaPeliculas : List[Pelicula]) : List[Pelicula] =
     { 
-        var obj = new Pelicula(newNombre,newCreador,duracion)
+        var obj : Pelicula = new Pelicula(newNombre,newCreador,duracion)
         var add = obj :: _listaPeliculas
         return _listaPeliculas
     }

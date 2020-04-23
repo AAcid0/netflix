@@ -12,7 +12,7 @@ class Sistema
 
     //Getters
     def listaPeliculas = _listaPeliculas
-    def listaUsuaios = _listaUsuarios 
+    def listaUsuarios = _listaUsuarios 
 
     // //MÉTODOS
 
