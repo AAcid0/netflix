@@ -25,4 +25,5 @@ trait Usuario
     def nivel_= (nuevoNivel : Int) = _nivel = nuevoNivel
     //def estadoCuenta_= (nuevoEstado : String) =_estadoCuenta = estadoCuenta
 
+   
 }

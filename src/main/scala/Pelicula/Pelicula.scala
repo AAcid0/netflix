@@ -6,6 +6,7 @@ class Pelicula
 
     var _nombre : String = _
     var _nombreCreador : String = _
+    var _descripcion : String =_
     var _numVistas : Int = 0
     var _duracion : Int = 0 //en minutos
     var _costoDescarga : Double = 0
@@ -16,7 +17,7 @@ class Pelicula
     {
         this()
         _nombre = n
-        _nombreCreador = d
+        _descripcion = d
         _duracion = dur
         _costoDescarga = this.calcularCostoDescarga()
     }
