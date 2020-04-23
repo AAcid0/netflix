@@ -43,14 +43,15 @@ class Sistema
 
     def encontrarUsuario(user : String) : Usuario =
     {
-        for( p <- this._listaUsuarios )
+        for( i <- this._listaUsuarios )
         {
-            if(user == p._username)
+            if(user == i._username)
             {
-                var us= p.asInstanceOf[Usuario]
-                return us
+                return i
             }
         }
+        var usuVacio = new UsuarioNorm
+        return usuVacio
     }
 
 
